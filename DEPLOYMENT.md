@@ -14,11 +14,15 @@ configuration only.
 
 ## 1. Create a free Turso database
 
-Install the Turso CLI and sign up (no credit card):
+Install the Turso CLI and sign up (no credit card). Two install options — try the script first,
+fall back to Homebrew if it hits a network/TLS error:
 
 ```bash
 curl -sSfL https://get.tur.so/install.sh | bash
-turso auth signup   # opens a browser to sign up/log in
+# or, if that fails:
+brew install tursodatabase/tap/turso
+
+turso auth login   # opens a browser to sign up (new account) or log in (existing) via GitHub
 ```
 
 Create a database and get its connection details:
@@ -89,6 +93,10 @@ This doesn't affect the database (that's on Turso now, not Render), only cold-st
    | Framework Preset | Vite (auto-detected) |
    | Build Command | `npm run build` (default) |
    | Output Directory | `dist` (default) |
+
+   `client/vercel.json` already pins the framework/build command/output directory explicitly, so
+   this works even if Vercel's dashboard dropdowns don't auto-detect correctly (if you previously
+   saw `Error: No Output Directory named "public" found`, this file fixes it — just redeploy).
 3. Add environment variable:
    | Key | Value |
    |---|---|
