@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// A single simulation run: the user's inputs plus the AI-generated futures.
+model Simulation {
+  id          String   @id @default(cuid())
+  decision    String
+  horizonYears Int
+  profile     String   // JSON-stringified user profile (age, country, salary, values, etc.)
+  whatIf      String?  // JSON-stringified what-if overrides, if this run was a what-if regeneration
+  parentId    String?  // id of the simulation this what-if branched from, if any
+  result      String   // JSON-stringified { futures, aiBoard, consensus, disagreements, decisionTree }
+  createdAt   DateTime @default(now())
+}

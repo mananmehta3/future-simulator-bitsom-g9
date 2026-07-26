@@ -1,0 +1,26 @@
+{
+  "name": "future-simulator",
+  "private": true,
+  "version": "1.0.0",
+  "description": "See the life paths your decisions could create.",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n SERVER,CLIENT -c blue,magenta \"npm run dev --workspace server\" \"npm run dev --workspace client\"",
+    "server": "npm run dev --workspace server",
+    "client": "npm run dev --workspace client",
+    "build": "npm run build --workspace client",
+    "prisma:generate": "npm run prisma:generate --workspace server",
+    "prisma:migrate": "npm run prisma:migrate --workspace server",
+    "prisma:studio": "npm run prisma:studio --workspace server",
+    "postinstall": "npm run prisma:generate --workspace server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
