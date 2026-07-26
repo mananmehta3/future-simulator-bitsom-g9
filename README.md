@@ -143,3 +143,10 @@ three, including real example output from each.
 | `npm run build` | Production build of the client |
 | `npm run prisma:migrate` | Create/apply a Prisma migration |
 | `npm run prisma:studio` | Open Prisma Studio to inspect the SQLite DB |
+
+## Deploying for free
+
+See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for a full free deployment guide (Vercel for the client,
+Render for the API, Turso for a persistent SQLite-compatible database — plain local SQLite doesn't
+survive on Vercel or Render's free tiers, so the database layer already supports both via the same
+code path with no further changes needed).
