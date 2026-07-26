@@ -15,7 +15,7 @@
     "prisma:generate": "npm run prisma:generate --workspace server",
     "prisma:migrate": "npm run prisma:migrate --workspace server",
     "prisma:studio": "npm run prisma:studio --workspace server",
-    "postinstall": "npm run prisma:generate --workspace server"
+    "postinstall": "npm run prisma:generate --workspace server || echo 'Skipped prisma generate (server dependencies not installed in this environment — expected for client-only deploys like Vercel)'"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
